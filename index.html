@@ -34,40 +34,42 @@
 
   <style>
     * { box-sizing: border-box; }
-    html, body {
-      margin: 0;
-      height: 100%;
-      overflow: hidden;                 /* sin scroll en la página: el único scroll vive dentro del quiz */
-      background: #fbfaf6;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    }
-    .page {
+    html, body { margin: 0; min-height: 100%; }
+    body {
+      min-height: 100dvh;
       display: flex;
       flex-direction: column;
-      height: 100dvh;                    /* ocupa exactamente la pantalla, también en mobile */
-    }
-    /* Barra slim con el logo — quitala si querés la pantalla 100% limpia */
-    .topbar {
-      flex: 0 0 auto;
-      display: flex;
       align-items: center;
       justify-content: center;
-      padding: 10px 16px;
-      background: #fff;
-      border-bottom: 1px solid #ecebe6;
+      gap: 16px;
+      padding: 20px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      /* fondo con contraste para que la caja resalte */
+      background:
+        radial-gradient(ellipse 70% 50% at 50% 0%, rgba(244,114,94,0.14), transparent),
+        radial-gradient(ellipse 90% 60% at 50% 100%, rgba(77,173,122,0.10), transparent),
+        #fbfaf6;
     }
-    .topbar img {
-      height: 32px;
-      width: 32px;
-      border-radius: 8px;
+    /* logo arriba de la caja — borralo si querés la pantalla aún más limpia */
+    .logo {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
       display: block;
     }
-    .quiz {
-      flex: 1 1 auto;
+    /* la "caixinha" vertical centrada */
+    .quiz-card {
       position: relative;
-      min-height: 0;                     /* deja que el iframe llene el espacio restante */
+      width: 100%;
+      max-width: 440px;
+      height: 80dvh;
+      max-height: 760px;
+      border-radius: 18px;
+      overflow: hidden;
+      background: #fff;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 18px 50px -12px rgba(77,173,122,0.22);
     }
-    .quiz iframe {
+    .quiz-card iframe {
       position: absolute;
       inset: 0;
       width: 100%;
@@ -77,21 +79,17 @@
   </style>
 </head>
 <body>
-  <div class="page">
 
-    <header class="topbar">
-      <img src="/logo-q7.png" alt="Personal Guide Q7" />
-    </header>
+  <img class="logo" src="/logo-q7.png" alt="Personal Guide Q7" />
 
-    <main class="quiz">
-      <!-- Quiz Formbricks. Para cambiar el quiz, edita solo esta URL: -->
-      <iframe
-        src="https://quiz.personalguide.chat/s/cmposi6g80009mk01d8h27pcf?embed=true"
-        title="Diagnóstico Personal Guide Q7"
-        allow="clipboard-write">
-      </iframe>
-    </main>
-
+  <!-- la caja del quiz. Para cambiar el quiz, edita solo esta URL: -->
+  <div class="quiz-card">
+    <iframe
+      src="https://quiz.personalguide.chat/s/cmposi6g80009mk01d8h27pcf?embed=true"
+      title="Diagnóstico Personal Guide Q7"
+      allow="clipboard-write">
+    </iframe>
   </div>
+
 </body>
 </html>
