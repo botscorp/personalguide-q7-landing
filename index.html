@@ -2,9 +2,9 @@
 <html lang="es-419">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Personal Guide Q7 — Adelgaza con tu guía personal en WhatsApp</title>
-  <meta name="description" content="Un guía personal por WhatsApp que te acompaña todos los días. Ciclos de 7 días, sin dietas locas, sin juicio. Pensado para mujeres que ya probaron de todo." />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Personal Guide Q7 — Tu diagnóstico personalizado</title>
+  <meta name="description" content="Hacé tu diagnóstico en 2 minutos y recibí tu plan personalizado. Un guía personal que te acompaña por WhatsApp, todos los días." />
   <meta property="og:title" content="Personal Guide Q7" />
   <meta property="og:description" content="Adelgaza con tu guía personal por WhatsApp. No estás sola en esto." />
   <meta property="og:image" content="https://q7.personalguide.chat/logo-q7.png" />
@@ -32,229 +32,66 @@
     src="https://www.facebook.com/tr?id=1154732326039609&ev=PageView&noscript=1" alt="" /></noscript>
   <!-- ===== End Meta Pixel ===== -->
 
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            q7green: {
-              50:  '#f0f9f3',
-              100: '#dcf0e3',
-              200: '#b8e1c8',
-              500: '#4DAD7A',
-              600: '#3e9266',
-              700: '#316f4f',
-              900: '#1a3a29'
-            },
-            q7coral: {
-              300: '#f8a895',
-              400: '#f5896e',
-              500: '#f4725e'
-            }
-          },
-          fontFamily: {
-            sans: ['-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif']
-          }
-        }
-      }
-    }
-  </script>
-
   <style>
-    .hero-bg {
-      background:
-        radial-gradient(ellipse 70% 50% at 50% 0%, rgba(244,114,94,0.14), transparent),
-        radial-gradient(ellipse 90% 60% at 50% 100%, rgba(77,173,122,0.10), transparent),
-        #fbfaf6;
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0;
+      height: 100%;
+      overflow: hidden;                 /* sin scroll en la página: el único scroll vive dentro del quiz */
+      background: #fbfaf6;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     }
-    .soft-card {
-      box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 8px 24px -8px rgba(77,173,122,0.10);
+    .page {
+      display: flex;
+      flex-direction: column;
+      height: 100dvh;                    /* ocupa exactamente la pantalla, también en mobile */
+    }
+    /* Barra slim con el logo — quitala si querés la pantalla 100% limpia */
+    .topbar {
+      flex: 0 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 16px;
+      background: #fff;
+      border-bottom: 1px solid #ecebe6;
+    }
+    .topbar img {
+      height: 32px;
+      width: 32px;
+      border-radius: 8px;
+      display: block;
+    }
+    .quiz {
+      flex: 1 1 auto;
+      position: relative;
+      min-height: 0;                     /* deja que el iframe llene el espacio restante */
+    }
+    .quiz iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
     }
   </style>
 </head>
-<body class="bg-white text-slate-800 antialiased font-sans">
+<body>
+  <div class="page">
 
-  <!-- Hero -->
-  <section class="hero-bg">
-    <div class="max-w-md mx-auto px-6 pt-10 pb-12 text-center">
+    <header class="topbar">
+      <img src="/logo-q7.png" alt="Personal Guide Q7" />
+    </header>
 
-      <img src="/logo-q7.png" alt="Personal Guide Q7" class="w-24 h-24 mx-auto mb-6 rounded-2xl" />
+    <main class="quiz">
+      <!-- Quiz Formbricks. Para cambiar el quiz, edita solo esta URL: -->
+      <iframe
+        src="https://quiz.personalguide.chat/s/cmposi6g80009mk01d8h27pcf?embed=true"
+        title="Diagnóstico Personal Guide Q7"
+        allow="clipboard-write">
+      </iframe>
+    </main>
 
-      <h1 class="text-3xl sm:text-4xl font-bold leading-tight text-slate-900 tracking-tight">
-        Adelgazar sin estar <span class="text-q7green-600">sola</span> en el intento.
-      </h1>
-
-      <p class="mt-5 text-base text-slate-600 leading-relaxed">
-        Un guía personal que vive en tu WhatsApp y te acompaña todos los días.
-        Sin dietas locas. Sin contar calorías. Sin juicio.
-      </p>
-
-      <button type="button" onclick="openQuiz()" class="mt-8 inline-block w-full sm:w-auto px-8 py-4 rounded-full bg-q7green-500 hover:bg-q7green-600 transition text-white font-semibold text-base shadow-lg shadow-q7green-700/25 cursor-pointer">
-        Hacer mi diagnóstico gratis
-      </button>
-
-      <p class="mt-3 text-xs text-slate-500">2 minutos · sin tarjeta · resultado personalizado</p>
-
-    </div>
-  </section>
-
-  <!-- Carta de empatia -->
-  <section class="max-w-md mx-auto px-6 py-14">
-    <p class="text-lg leading-relaxed text-slate-700">
-      Si llegaste hasta acá, probablemente ya probaste de todo.
-    </p>
-    <p class="mt-4 text-base leading-relaxed text-slate-600">
-      Dietas, apps, planes que empezaste el lunes y abandonaste el miércoles. No es falta de voluntad. Es que entre una consulta y la siguiente, entre un lunes y un miércoles, <strong class="text-slate-800">nadie está ahí</strong>.
-    </p>
-    <p class="mt-4 text-base leading-relaxed text-slate-600">
-      Q7 es justamente eso que faltaba: alguien que te conoce, te escribe todos los días, y se adapta a tu vida real.
-    </p>
-  </section>
-
-  <!-- Cómo funciona -->
-  <section class="bg-q7green-50/40 border-y border-q7green-100">
-    <div class="max-w-md mx-auto px-6 py-14">
-      <h2 class="text-2xl font-bold text-slate-900 text-center mb-10 tracking-tight">¿Cómo funciona?</h2>
-
-      <div class="space-y-7">
-        <div class="flex gap-4">
-          <div class="shrink-0 w-10 h-10 rounded-full bg-white text-q7green-700 font-bold flex items-center justify-center soft-card">1</div>
-          <div>
-            <h3 class="font-semibold text-slate-900 text-base">Hacés tu diagnóstico (2 min)</h3>
-            <p class="text-sm text-slate-600 mt-1 leading-relaxed">Te preguntamos sobre tu rutina, tus dificultades y tu objetivo. Sin juicios, sin números absurdos.</p>
-          </div>
-        </div>
-
-        <div class="flex gap-4">
-          <div class="shrink-0 w-10 h-10 rounded-full bg-white text-q7green-700 font-bold flex items-center justify-center soft-card">2</div>
-          <div>
-            <h3 class="font-semibold text-slate-900 text-base">Recibís tu plan personalizado</h3>
-            <p class="text-sm text-slate-600 mt-1 leading-relaxed">Un plan de 12 semanas adaptado a vos. Pequeños pasos, todos los días — del Día 7 al Día 90.</p>
-          </div>
-        </div>
-
-        <div class="flex gap-4">
-          <div class="shrink-0 w-10 h-10 rounded-full bg-white text-q7green-700 font-bold flex items-center justify-center soft-card">3</div>
-          <div>
-            <h3 class="font-semibold text-slate-900 text-base">Alma te acompaña en WhatsApp</h3>
-            <p class="text-sm text-slate-600 mt-1 leading-relaxed">Alma es tu guía personal. Te escribe todos los días, te recuerda, te escucha y ajusta el plan a tu momento.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Para vos si... -->
-  <section class="max-w-md mx-auto px-6 py-14">
-    <h2 class="text-2xl font-bold text-slate-900 text-center mb-8 tracking-tight">Esto es para vos si...</h2>
-    <ul class="space-y-4 text-base text-slate-700">
-      <li class="flex gap-3"><span class="text-q7green-600 font-bold mt-0.5">✓</span><span>Probaste de todo y nada quedó.</span></li>
-      <li class="flex gap-3"><span class="text-q7green-600 font-bold mt-0.5">✓</span><span>No tenés tiempo para apps complicadas ni para contar todo lo que comés.</span></li>
-      <li class="flex gap-3"><span class="text-q7green-600 font-bold mt-0.5">✓</span><span>Sabés lo que tenés que hacer, pero te cuesta sostenerlo sola.</span></li>
-      <li class="flex gap-3"><span class="text-q7green-600 font-bold mt-0.5">✓</span><span>Querés alguien que te conozca y te acompañe de verdad.</span></li>
-    </ul>
-  </section>
-
-  <!-- Chat preview -->
-  <section class="bg-slate-50">
-    <div class="max-w-md mx-auto px-6 py-14">
-      <h2 class="text-2xl font-bold text-slate-900 text-center mb-3 tracking-tight">Así te va a escribir Alma</h2>
-      <p class="text-sm text-slate-500 text-center mb-7">Tu guía personal en WhatsApp</p>
-
-      <div class="bg-[#e7dfd7] rounded-2xl p-4 space-y-2 soft-card">
-        <div class="bg-white rounded-2xl rounded-tl-sm px-4 py-2.5 max-w-[85%] text-sm text-slate-800 shadow-sm">
-          Buen día 🌱 ¿Cómo amaneciste hoy?
-        </div>
-        <div class="bg-[#dcf8c6] rounded-2xl rounded-tr-sm px-4 py-2.5 max-w-[85%] ml-auto text-sm text-slate-800 shadow-sm">
-          Un poco floja la verdad
-        </div>
-        <div class="bg-white rounded-2xl rounded-tl-sm px-4 py-2.5 max-w-[85%] text-sm text-slate-800 shadow-sm">
-          Te entiendo. Hoy entonces vamos suave — ¿qué tal un vaso de agua antes del café? Empezamos por ahí 💧
-        </div>
-        <div class="bg-[#dcf8c6] rounded-2xl rounded-tr-sm px-4 py-2.5 max-w-[85%] ml-auto text-sm text-slate-800 shadow-sm">
-          Bueno, dale
-        </div>
-        <div class="bg-white rounded-2xl rounded-tl-sm px-4 py-2.5 max-w-[85%] text-sm text-slate-800 shadow-sm">
-          Hecho. Te escribo más tarde para ver cómo seguiste 🤍
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== SECCIÓN DE PRUEBA: embed INLINE (temporal, para comparar con el modal) ===== -->
-  <section class="bg-amber-50 border-y border-amber-200">
-    <div class="max-w-md mx-auto px-6 py-10">
-      <p class="text-xs font-semibold uppercase tracking-wide text-amber-700 mb-1">⚠️ Sección de prueba — embed inline</p>
-      <p class="text-sm text-slate-600 mb-5">Así se ve el quiz incrustado directo en la página (para comparar con el modal de los botones). Esta sección se elimina después del test.</p>
-      <div style="position: relative; height:80dvh; overflow:auto; border-radius:16px;" class="soft-card bg-white">
-        <iframe
-          src="https://quiz.personalguide.chat/s/cmposi6g80009mk01d8h27pcf?embed=true"
-          frameborder="0" style="position:absolute; left:0; top:0; width:100%; height:100%; border:0;">
-        </iframe>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA final -->
-  <section id="empezar" class="bg-gradient-to-b from-white to-q7green-50/60">
-    <div class="max-w-md mx-auto px-6 py-16 text-center">
-      <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 mb-4 tracking-tight">¿Empezamos juntas?</h2>
-      <p class="text-base text-slate-600 mb-8 leading-relaxed">
-        Tu diagnóstico tarda 2 minutos.<br />Después decidís si querés que Alma te acompañe.
-      </p>
-
-      <button type="button" onclick="openQuiz()" class="inline-block w-full sm:w-auto px-8 py-4 rounded-full bg-q7green-500 hover:bg-q7green-600 transition text-white font-semibold text-base shadow-lg shadow-q7green-700/25 cursor-pointer">
-        Hacer mi diagnóstico gratis
-      </button>
-
-      <p class="mt-4 text-xs text-slate-500">Garantía de 7 días · cancelás cuando quieras</p>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="bg-slate-900 text-white/70">
-    <div class="max-w-md mx-auto px-6 py-8 text-center text-xs space-y-2">
-      <p><a href="https://personalguide.chat" class="hover:text-white transition">← Personal Guide</a></p>
-      <p class="text-white/40">© <span id="year"></span> Botscorp · q7.personalguide.chat</p>
-    </div>
-  </footer>
-
-  <!-- ===== Modal del quiz (overlay full-screen) ===== -->
-  <div id="quiz-modal" class="hidden fixed inset-0 z-50 bg-black/60 backdrop-blur-sm">
-    <div class="absolute inset-0 sm:inset-y-6 sm:inset-x-0 sm:max-w-lg sm:mx-auto bg-white sm:rounded-2xl shadow-2xl overflow-hidden flex flex-col">
-      <div class="flex justify-end p-2 shrink-0 border-b border-slate-100">
-        <button type="button" onclick="closeQuiz()" aria-label="Cerrar" class="w-9 h-9 rounded-full hover:bg-slate-100 text-slate-500 text-xl leading-none flex items-center justify-center cursor-pointer">✕</button>
-      </div>
-      <iframe id="quiz-frame" src="" frameborder="0" class="flex-1 w-full border-0"></iframe>
-    </div>
   </div>
-
-  <script>
-    // ===== CONFIG — cuando cambie el quiz, solo se edita esta línea =====
-    const QUIZ_URL = "https://quiz.personalguide.chat/s/cmposi6g80009mk01d8h27pcf?embed=true";
-
-    const quizModal = document.getElementById('quiz-modal');
-    const quizFrame = document.getElementById('quiz-frame');
-
-    function openQuiz() {
-      if (!quizFrame.src) quizFrame.src = QUIZ_URL;   // carga el iframe solo al abrir
-      quizModal.classList.remove('hidden');
-      document.body.style.overflow = 'hidden';        // bloquea scroll de fondo
-      if (window.fbq) fbq('track', 'Lead');           // evento Meta: inició el diagnóstico
-    }
-
-    function closeQuiz() {
-      quizModal.classList.add('hidden');
-      document.body.style.overflow = '';
-    }
-
-    // cerrar con tecla Esc o tocando el fondo oscuro
-    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeQuiz(); });
-    quizModal.addEventListener('click', function (e) { if (e.target === quizModal) closeQuiz(); });
-
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
-
 </body>
 </html>
