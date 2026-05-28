@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="es-419">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Tu plan personalizado — Personal Guide Q7</title>
+  <meta name="description" content="Así será tu acompañamiento los próximos 90 días con Alma. Tu plan personalizado, día por día." />
+  <meta property="og:title" content="Tu plan personalizado — Personal Guide Q7" />
+  <meta property="og:description" content="Así será tu acompañamiento los próximos 90 días con Alma." />
+  <meta property="og:image" content="https://q7.personalguide.chat/logo-q7.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://q7.personalguide.chat/resultado.html" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/logo-q7.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/logo-q7.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/logo-q7.png" />
+  <link rel="shortcut icon" href="/logo-q7.png" />
+
+  <!-- ===== Meta Pixel ===== -->
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1154732326039609');
+    fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1154732326039609&ev=PageView&noscript=1" alt="" /></noscript>
+  <!-- ===== End Meta Pixel ===== -->
+
+  <style>
+    * { box-sizing: border-box; }
+    html, body { margin: 0; }
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      color: #1B1B1B;
+      background:
+        radial-gradient(ellipse 70% 40% at 50% 0%, rgba(244,114,94,0.12), transparent),
+        radial-gradient(ellipse 90% 50% at 50% 100%, rgba(77,173,122,0.10), transparent),
+        #fbfaf6;
+      min-height: 100dvh;
+    }
+    .wrap { max-width: 480px; margin: 0 auto; padding: 24px 18px 40px; }
+    .logo { width: 40px; height: 40px; border-radius: 10px; display: block; margin: 0 auto 18px; }
+
+    /* ===== d1 — cabeçalho + stats ===== */
+    .badge {
+      display: inline-block; background: #E8F5EE; color: #3A8B5C;
+      font-size: 11px; font-weight: 600; letter-spacing: 1px;
+      padding: 4px 12px; border-radius: 14px;
+    }
+    .title { font-size: 21px; font-weight: 600; color: #1B1B1B; line-height: 1.35; margin: 14px 0 6px; }
+    .sub { font-size: 12px; color: #999; margin: 0; }
+    .stats { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin: 18px 0 6px; text-align: center; }
+    .stat { background: #F7FBF9; border: 1px solid #E0EFE6; border-radius: 10px; padding: 12px; }
+    .stat .k { font-size: 10px; color: #888; margin: 0; }
+    .stat .v { font-size: 22px; font-weight: 600; color: #1B1B1B; margin: 2px 0 0; }
+    .tagline { font-size: 11px; color: #3A8B5C; margin: 0 0 20px; font-style: italic; text-align: center; }
+    .weeklabel {
+      font-size: 10px; text-transform: uppercase; letter-spacing: 1px;
+      color: #AAA; font-weight: 600; margin: 0 0 10px; text-align: left;
+    }
+
+    /* ===== d2/d3 — linha do tempo (dias) ===== */
+    .days { display: flex; flex-direction: column; gap: 8px; }
+    .day {
+      background: #FFF; border: 1px solid #F0F0F0; border-radius: 12px;
+      padding: 13px 15px; display: flex; align-items: flex-start; gap: 12px;
+    }
+    .day.green { background: #F7FBF9; border-color: #E0EFE6; }
+    .day .when { min-width: 50px; }
+    .day .when .w { font-size: 13px; font-weight: 500; color: #333; margin: 0; }
+    .day .when .d { font-size: 11px; color: #888; margin: 2px 0 0; }
+    .day.green .when .w { font-weight: 600; color: #3A8B5C; }
+    .day.green .when .d { color: #3A8B5C; }
+    .day .txt { flex: 1; font-size: 12.5px; color: #444; margin: 0; line-height: 1.5; }
+    .day.green .txt { color: #333; }
+    .tag {
+      font-size: 9px; font-weight: 600; padding: 3px 7px; border-radius: 5px; white-space: nowrap;
+    }
+    .tag.mision { background: #E8F5EE; color: #3A8B5C; }
+    .tag.checkin { background: #EBF3FE; color: #185FA5; }
+    .tag.reflexion { background: #FFF0EC; color: #993C1D; }
+    .tag.prep { background: #FFF8E8; color: #854F0B; }
+    .tag.cierre { background: #EEEDFE; color: #534AB7; }
+
+    /* ===== d4 — rodapé ===== */
+    .note { padding: 13px; border-radius: 10px; text-align: center; margin-top: 10px; }
+    .note.green { background: #F7FBF9; border: 1px solid #E0EFE6; }
+    .note.warm { background: #FFF8F0; border: 1px solid #F5E0C4; }
+    .note p { margin: 0; font-size: 12.5px; line-height: 1.5; }
+    .note.green p { color: #3A8B5C; }
+    .note.warm p { color: #8B6B3A; }
+
+    /* ===== CTA ===== */
+    .cta-box { margin-top: 24px; text-align: center; }
+    .cta {
+      display: inline-block; width: 100%; padding: 16px 28px; border: 0;
+      border-radius: 999px; background: #4DAD7A; color: #fff;
+      font-size: 16px; font-weight: 600; cursor: pointer; text-decoration: none;
+      box-shadow: 0 10px 24px -8px rgba(49,111,79,0.45);
+    }
+    .cta:hover { background: #3e9266; }
+    .cta-sub { font-size: 11px; color: #888; margin: 12px 0 0; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <img class="logo" src="/logo-q7.png" alt="Personal Guide Q7" />
+
+    <!-- ===== d1 — cabeçalho + stats ===== -->
+    <div style="text-align:center">
+      <span class="badge">TU PLAN PERSONALIZADO</span>
+      <h1 class="title"><span id="saludo"></span>así será tu acompañamiento<br>los próximos 90 días con Alma</h1>
+      <p class="sub">Creado el <span id="qh">---</span> · Empieza mañana · Temporada 1</p>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><p class="k">Mensajes</p><p class="v">200+</p></div>
+      <div class="stat"><p class="k">Misiones</p><p class="v">12</p></div>
+      <div class="stat"><p class="k">Marcos</p><p class="v">5</p></div>
+    </div>
+    <p class="tagline">Todo personalizado para tu momento. En tu WhatsApp.</p>
+
+    <p class="weeklabel">Semana 1 — Tu primer ciclo · Hidratación</p>
+
+    <!-- ===== d2 + d3 — linha do tempo (dias 1 a 7) ===== -->
+    <div class="days">
+      <div class="day green">
+        <div class="when"><p class="w"><span id="q1w">—</span></p><p class="d"><span id="q1d">—</span></p></div>
+        <p class="txt">Alma te conoce y te entrega tu primera misión: un vaso de agua antes de cada comida</p>
+        <span class="tag mision">Misión</span>
+      </div>
+      <div class="day">
+        <div class="when"><p class="w"><span id="q2w">—</span></p><p class="d"><span id="q2d">—</span></p></div>
+        <p class="txt">¿Cómo fue tu primer día? Alma escucha y ajusta según tu respuesta</p>
+        <span class="tag checkin">Check-in</span>
+      </div>
+      <div class="day">
+        <div class="when"><p class="w"><span id="q3w">—</span></p><p class="d"><span id="q3d">—</span></p></div>
+        <p class="txt">¿Qué te tentó ayer? Entender tu patrón sin culpa</p>
+        <span class="tag reflexion">Reflexión</span>
+      </div>
+      <div class="day">
+        <div class="when"><p class="w"><span id="q4w">—</span></p><p class="d"><span id="q4d">—</span></p></div>
+        <p class="txt">Recordatorio de tu misión + ajuste si algo cambió en tu semana</p>
+        <span class="tag checkin">Check-in</span>
+      </div>
+      <div class="day">
+        <div class="when"><p class="w"><span id="q5w">—</span></p><p class="d"><span id="q5d">—</span></p></div>
+        <p class="txt">Alma te prepara para el fin de semana con un plan concreto</p>
+        <span class="tag prep">Preparación</span>
+      </div>
+      <div class="day">
+        <div class="when"><p class="w"><span id="q6w">—</span></p><p class="d"><span id="q6d">—</span></p></div>
+        <p class="txt">¿Cómo va el fin de semana? Sin culpa. Seguimos.</p>
+        <span class="tag checkin">Check-in</span>
+      </div>
+      <div class="day green">
+        <div class="when"><p class="w"><span id="q7w">—</span></p><p class="d"><span id="q7d">—</span></p></div>
+        <p class="txt">Reflexión de cierre. Alma celebra contigo lo que lograste</p>
+        <span class="tag cierre">Cierre</span>
+      </div>
+    </div>
+
+    <!-- ===== d4 — rodapé ===== -->
+    <div class="note green">
+      <p>Esto es solo la <b>semana 1</b>. Tu plan completo tiene <b>12 semanas</b> con Alma, con marcos personales en los días 8, 15, 30, 60 y 90, y más de 200 mensajes pensados para ti.</p>
+    </div>
+    <div class="note warm">
+      <p>Tu primer mensaje de Alma llega el <b><span id="qm">mañana</span></b>. Solo tienes que dar el paso.</p>
+    </div>
+
+    <!-- ===== CTA → página de vendas ===== -->
+    <div class="cta-box">
+      <a id="cta" class="cta" href="#">Ver mi plan completo de 12 semanas</a>
+      <p class="cta-sub">Garantía de 7 días · cancelás cuando quieras</p>
+    </div>
+
+  </div>
+
+  <script>
+    // ===== CONFIG — cuando exista la página de ventas, edita esta URL: =====
+    const VENTAS_URL = "#";   // ej: "/carta.html"
+
+    (function () {
+      const params = new URLSearchParams(location.search);
+
+      // Nombre personalizado (?nombre=María). Si no viene, el título funciona sin nombre.
+      const nombre = (params.get('nombre') || '').trim();
+      if (nombre) document.getElementById('saludo').textContent = nombre + ', ';
+
+      // ===== Fechas dinámicas: el plan empieza mañana (D+1 ... D+7) =====
+      const d = new Date();
+      const wk = ['dom', 'lun', 'mar', 'mié', 'jue', 'vie', 'sáb'];
+      const mAbbr = ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic'];
+      const mFull = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+      const set = (id, v) => { const el = document.getElementById(id); if (el) el.textContent = v; };
+      const plus = (o) => { const x = new Date(d); x.setDate(x.getDate() + o); return { w: wk[x.getDay()], d: x.getDate() + '/' + mAbbr[x.getMonth()] }; };
+
+      set('qh', d.getDate() + ' de ' + mFull[d.getMonth()] + ' de ' + d.getFullYear());
+      for (let i = 1; i <= 7; i++) { const v = plus(i); set('q' + i + 'w', v.w); set('q' + i + 'd', v.d); }
+      const t = plus(1); set('qm', t.w + ' ' + t.d);   // primer mensaje = mañana
+
+      // ===== CTA hacia la página de ventas =====
+      const cta = document.getElementById('cta');
+      cta.href = VENTAS_URL;
+      cta.addEventListener('click', function () {
+        if (window.fbq) fbq('track', 'InitiateCheckout');
+      });
+    })();
+  </script>
+
+</body>
+</html>
