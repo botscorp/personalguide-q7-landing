@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="es-419">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Q7 — Tu Guía Personal</title>
+<meta name="description" content="Un guía personal en tu WhatsApp que te acompaña todos los días. Menos que un café al día." />
+<meta property="og:title" content="Q7 — Tu Guía Personal" />
+<meta property="og:description" content="Adelgaza con tu guía personal por WhatsApp. No estás sola en esto." />
+<meta property="og:image" content="https://q7.personalguide.chat/logo-q7.png" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://q7.personalguide.chat/carta" />
+<link rel="icon" type="image/png" sizes="32x32" href="/logo-q7.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/logo-q7.png" />
+
+<!-- ===== Meta Pixel ===== -->
+<script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1154732326039609');
+  fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=1154732326039609&ev=PageView&noscript=1" alt="" /></noscript>
+<!-- ===== End Meta Pixel ===== -->
+
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Outfit', sans-serif;
+    background: #FFFFFF;
+    color: #333;
+    line-height: 1.75;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  .page {
+    max-width: 460px;
+    margin: 0 auto;
+    padding: 0 22px;
+  }
+
+  /* ---- Hero ---- */
+  .hero {
+    text-align: center;
+    padding: 36px 0 24px;
+  }
+  .hero .logo { width: 48px; height: 48px; border-radius: 12px; margin: 0 auto 20px; display: block; }
+  .hero-label {
+    display: inline-block;
+    background: linear-gradient(135deg, #E8F5EE, #D4EFDF);
+    color: #3A8B5C;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+  }
+  .hero h1 {
+    font-family: 'Lora', serif;
+    font-size: 25px;
+    font-weight: 600;
+    line-height: 1.35;
+    color: #1B1B1B;
+    margin-bottom: 14px;
+  }
+  .hero h1 .name { color: #4DAD7A; }
+  .hero .sub {
+    font-size: 14.5px;
+    color: #888;
+    font-weight: 300;
+    line-height: 1.55;
+  }
+
+  .spacer { height: 40px; }
+  .spacer-sm { height: 28px; }
+
+  .divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #E5E5E5, transparent);
+    margin: 36px 0;
+  }
+
+  .text p {
+    font-size: 15.5px;
+    color: #444;
+    margin-bottom: 16px;
+    font-weight: 300;
+    line-height: 1.8;
+  }
+  .text p strong { font-weight: 600; color: #1B1B1B; }
+  .text p.center { text-align: center; }
+  .text p.big {
+    font-family: 'Lora', serif;
+    font-size: 18px;
+    font-weight: 400;
+    color: #1B1B1B;
+    text-align: center;
+    line-height: 1.6;
+    padding: 8px 0;
+  }
+
+  .heading {
+    font-family: 'Lora', serif;
+    font-size: 21px;
+    font-weight: 600;
+    line-height: 1.35;
+    color: #1B1B1B;
+    margin-bottom: 18px;
+  }
+  .heading .accent { color: #4DAD7A; }
+
+  .callout {
+    border-radius: 14px;
+    padding: 20px 22px;
+    margin: 22px 0;
+    font-size: 14.5px;
+    line-height: 1.7;
+    font-weight: 300;
+  }
+  .callout-warm { background: #FFF8F0; border: 1px solid #F5E0C4; color: #7A5A2E; }
+  .callout-fresh { background: #F2FAF5; border: 1px solid #C8E6D4; color: #2D6B45; }
+  .callout strong { font-weight: 600; }
+  .callout-icon { font-size: 18px; margin-right: 6px; vertical-align: -2px; }
+
+  /* ---- WhatsApp conversation ---- */
+  .wa-section { margin: 28px 0; }
+  .wa-header {
+    display: flex; align-items: center; gap: 10px;
+    padding: 12px 16px; background: #075E54; border-radius: 14px 14px 0 0; color: #FFF;
+  }
+  .wa-avatar {
+    width: 36px; height: 36px; background: #4DAD7A; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 14px; color: #FFF;
+  }
+  .wa-header-info { display: flex; flex-direction: column; }
+  .wa-header-name { font-size: 14px; font-weight: 600; }
+  .wa-header-status { font-size: 11px; color: #A5D6B5; }
+  .wa-chat {
+    background: #ECE5DD; padding: 16px 14px; border-radius: 0 0 14px 14px;
+    display: flex; flex-direction: column; gap: 8px;
+  }
+  .bubble { max-width: 82%; padding: 10px 14px; border-radius: 10px; font-size: 13.5px; line-height: 1.55; position: relative; }
+  .bubble-in { background: #FFF; color: #333; align-self: flex-start; border-top-left-radius: 3px; box-shadow: 0 1px 1px rgba(0,0,0,0.06); }
+  .bubble-out { background: #DCF8C6; color: #333; align-self: flex-end; border-top-right-radius: 3px; box-shadow: 0 1px 1px rgba(0,0,0,0.06); }
+  .bubble-time { font-size: 10px; color: #999; text-align: right; margin-top: 4px; }
+
+  /* ---- Feature pills ---- */
+  .features { display: flex; flex-direction: column; gap: 10px; margin: 24px 0; }
+  .feature {
+    display: flex; align-items: flex-start; gap: 14px; padding: 18px;
+    background: #FAFCFB; border: 1px solid #EDF3EF; border-radius: 14px; transition: transform 0.15s;
+  }
+  .feature:hover { transform: translateY(-1px); }
+  .feature-icon {
+    width: 42px; height: 42px; border-radius: 12px; display: flex;
+    align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0;
+  }
+  .fi-green { background: #E8F5EE; }
+  .fi-coral { background: #FFF0EC; }
+  .fi-blue { background: #EBF3FE; }
+  .fi-yellow { background: #FFF8E8; }
+  .feature-content h4 { font-size: 14.5px; font-weight: 600; color: #1B1B1B; margin-bottom: 4px; }
+  .feature-content p { font-size: 13px; color: #888; font-weight: 300; line-height: 1.55; }
+
+  /* ---- Before / After ---- */
+  .before-after { margin: 28px 0; display: flex; flex-direction: column; gap: 10px; }
+  .ba-card { border-radius: 14px; padding: 20px; }
+  .ba-before { background: #FFF5F5; border: 1px solid #FCDCDC; }
+  .ba-after { background: #F2FAF5; border: 1px solid #C8E6D4; }
+  .ba-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; }
+  .ba-before .ba-label { color: #D4776C; }
+  .ba-after .ba-label { color: #4DAD7A; }
+  .ba-card ul { list-style: none; padding: 0; }
+  .ba-card ul li { font-size: 13.5px; padding: 5px 0; display: flex; align-items: center; gap: 8px; font-weight: 300; color: #555; }
+  .ba-before ul li::before { content: "—"; color: #D4776C; font-weight: 700; }
+  .ba-after ul li::before { content: "✓"; color: #4DAD7A; font-weight: 700; font-size: 12px; }
+
+  /* ---- Price block ---- */
+  .price-block {
+    text-align: center; margin: 32px 0; padding: 32px 24px;
+    background: linear-gradient(180deg, #F7FBF9, #FFFFFF);
+    border: 1.5px solid #D4EFDF; border-radius: 20px;
+  }
+  .price-tag { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; color: #4DAD7A; margin-bottom: 10px; }
+  .price-main { font-family: 'Lora', serif; font-size: 52px; font-weight: 600; color: #1B1B1B; line-height: 1; }
+  .price-main .cur { font-size: 20px; font-weight: 400; vertical-align: super; margin-right: 2px; color: #4DAD7A; }
+  .price-main .dec { font-size: 22px; vertical-align: super; }
+  .price-period { font-size: 14px; color: #999; font-weight: 300; margin-top: 4px; }
+  .price-daily { display: inline-block; margin-top: 10px; background: #E8F5EE; color: #3A8B5C; font-size: 12px; font-weight: 500; padding: 5px 14px; border-radius: 20px; }
+  .price-includes { text-align: left; margin-top: 24px; padding-top: 20px; border-top: 1px solid #E8F0EC; }
+  .price-includes li { list-style: none; font-size: 14px; font-weight: 300; color: #555; padding: 7px 0; display: flex; align-items: flex-start; gap: 10px; }
+  .price-includes li::before { content: "✓"; color: #4DAD7A; font-weight: 600; flex-shrink: 0; margin-top: 1px; }
+  .price-footer { margin-top: 16px; font-size: 11.5px; color: #BBB; }
+
+  /* ---- CTA ---- */
+  .cta {
+    display: block; width: 100%; padding: 18px;
+    background: linear-gradient(135deg, #4DAD7A, #3D9B6A); color: #FFF;
+    font-family: 'Outfit', sans-serif; font-size: 16px; font-weight: 600;
+    text-align: center; text-decoration: none; border: none; border-radius: 14px;
+    cursor: pointer; margin: 24px 0; box-shadow: 0 4px 16px rgba(77, 173, 122, 0.25); transition: all 0.2s;
+  }
+  .cta:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(77, 173, 122, 0.35); }
+  .cta-sub { text-align: center; font-size: 11.5px; color: #BBB; margin-top: -14px; margin-bottom: 20px; }
+
+  /* ---- Guarantee ---- */
+  .guarantee {
+    display: flex; align-items: flex-start; gap: 14px; padding: 20px;
+    background: #F7FBF9; border: 1px solid #D4EFDF; border-radius: 14px; margin: 24px 0;
+  }
+  .guarantee-icon { font-size: 28px; flex-shrink: 0; margin-top: 2px; }
+  .guarantee-text h4 { font-size: 14px; font-weight: 600; color: #2D6B45; margin-bottom: 4px; }
+  .guarantee-text p { font-size: 13px; color: #5A8A6A; font-weight: 300; line-height: 1.6; }
+
+  /* ---- FAQ ---- */
+  .faq { margin: 28px 0; }
+  .faq-item { border-bottom: 1px solid #F0F0F0; padding: 16px 0; }
+  .faq-q { font-size: 14.5px; font-weight: 500; color: #1B1B1B; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+  .faq-q .arr { font-size: 16px; color: #CCC; transition: transform 0.2s; flex-shrink: 0; }
+  .faq-a { font-size: 13.5px; color: #888; font-weight: 300; line-height: 1.65; margin-top: 10px; display: none; }
+  .faq-item.open .faq-a { display: block; }
+  .faq-item.open .arr { transform: rotate(180deg); }
+
+  /* ---- Footer ---- */
+  .footer { text-align: center; padding: 32px 0 48px; font-size: 11px; color: #CCC; }
+  .footer a { color: #AAA; text-decoration: none; }
+
+  /* ---- Urgency strip ---- */
+  .urgency {
+    text-align: center; padding: 14px 18px; background: #FFF8F0; border: 1px solid #F5E0C4;
+    border-radius: 12px; margin: 24px 0; font-size: 13px; font-weight: 500; color: #8B6B3A;
+  }
+
+  /* ---- Quote ---- */
+  .pull-quote { font-family: 'Lora', serif; font-style: italic; font-size: 17px; text-align: center; color: #555; line-height: 1.6; padding: 20px 10px; position: relative; }
+  .pull-quote::before { content: '"'; font-size: 48px; color: #D4EFDF; position: absolute; top: -5px; left: 50%; transform: translateX(-50%); font-family: 'Lora', serif; }
+
+  /* ---- For you list ---- */
+  .for-you { margin: 20px 0; }
+  .for-you li { list-style: none; font-size: 14px; font-weight: 300; color: #444; padding: 8px 0; display: flex; align-items: flex-start; gap: 10px; line-height: 1.55; }
+  .for-you li .dot { width: 6px; height: 6px; background: #4DAD7A; border-radius: 50%; flex-shrink: 0; margin-top: 7px; }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+<!-- ===================== HERO ===================== -->
+<div class="hero">
+  <img class="logo" src="/logo-q7.png" alt="Personal Guide Q7" />
+  <div class="hero-label">Tu plan personalizado</div>
+  <h1><span class="name" id="heroName"></span><span id="heroRest">Lo que descubriste cambia todo.</span></h1>
+  <p class="sub">Tu diagnóstico reveló algo que probablemente siempre sentiste pero nunca nadie te dijo.</p>
+</div>
+
+<!-- ===================== DIAGNOSIS RECALL ===================== -->
+<div class="text">
+  <p id="diag-recall" style="display:none">Tu resultado fue: <strong id="diag-nombre"></strong>.</p>
+  <p>Y si sentiste un nudo en la garganta mientras lo leías, es porque por primera vez alguien puso en palabras lo que llevas cargando hace meses. Tal vez años.</p>
+</div>
+
+<div class="callout callout-warm">
+  <span class="callout-icon">💡</span> Lo que descubriste no es un defecto tuyo. Es una pieza que siempre faltó. Y esa pieza tiene nombre: <strong>acompañamiento</strong>.
+</div>
+
+<div class="divider"></div>
+
+<!-- ===================== THE ANALOGY ===================== -->
+<h2 class="heading">Nadie te pidió que lo hicieras <span class="accent">sola</span>.</h2>
+<div class="text">
+  <p>Cuando aprendiste a manejar, tenías un instructor al lado. Cuando entraste a un trabajo nuevo, alguien te mostró cómo funcionaban las cosas. Cuando tu hijo dio sus primeros pasos, estabas ahí sosteniéndole las manos.</p>
+  <p>Nadie espera que una persona haga algo difícil sin compañía.</p>
+  <p><strong>Excepto bajar de peso.</strong></p>
+  <p>Para eso, se supone que tienes que hacerlo sola. Con "fuerza de voluntad". Con reglas de internet. Con una app que ignoras después del tercer día.</p>
+</div>
+
+<div class="divider"></div>
+
+<!-- ===================== THE REAL PROBLEM ===================== -->
+<h2 class="heading">La raíz del problema <span class="accent">no es la dieta</span>.</h2>
+<div class="text">
+  <p>Las dietas funcionan. De verdad. Tú misma ya lo comprobaste.</p>
+  <p><strong>El problema nunca fue el método.</strong></p>
+  <p>El problema es que entre el lunes que empiezas y el miércoles que fallas, no hay nadie. Entre una consulta y la otra, pasan 15 días en los que estás sola con la nevera a medianoche.</p>
+  <p>Ese silencio es donde se pierden todos los intentos.</p>
+</div>
+
+<div class="callout callout-fresh">
+  Ninguna dieta del mundo puede llenar ese espacio. Porque lo que necesitas en ese momento no es información. <strong>Es presencia.</strong>
+</div>
+
+<div class="divider"></div>
+
+<!-- ===================== Q7 INTRO ===================== -->
+<h2 class="heading">Existe un camino de <span class="accent">compañía</span>.</h2>
+<div class="text">
+  <p>Se llama Q7. Es un guía personal que vive en tu WhatsApp y te acompaña todos los días.</p>
+  <p class="big">Todos. Los. Días.</p>
+  <p>No es una app más. No es contenido genérico. No es un bot que repite frases motivacionales.</p>
+  <p>Es un compañero que te ayuda a construir, paso a paso, hábitos que se sostienen solos. Adaptado a tu contexto, tu momento de vida y tu ritmo.</p>
+</div>
+
+<div class="spacer-sm"></div>
+
+<!-- ===================== FEATURES ===================== -->
+<div class="features">
+  <div class="feature">
+    <div class="feature-icon fi-green">🌱</div>
+    <div class="feature-content"><h4>Pequeños pasos que transforman</h4><p>Una micromisión por semana. Un cambio a la vez. Poco a poco, tu vida empieza a ser otra.</p></div>
+  </div>
+  <div class="feature">
+    <div class="feature-icon fi-coral">🤝</div>
+    <div class="feature-content"><h4>Se adapta a ti y crece contigo</h4><p>Comenzando, volviendo o avanzada. Q7 te encuentra donde estás y camina a tu lado.</p></div>
+  </div>
+  <div class="feature">
+    <div class="feature-icon fi-blue">💬</div>
+    <div class="feature-content"><h4>Conversaciones diarias</h4><p>Un momento breve cada día en tu WhatsApp. Como alguien que te recuerda por qué empezaste.</p></div>
+  </div>
+  <div class="feature">
+    <div class="feature-icon fi-yellow">🛡️</div>
+    <div class="feature-content"><h4>Sin presión, sin culpa</h4><p>Cuando tropiezas, te escucha, entiende qué pasó y juntos buscan una forma mejor de seguir.</p></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ===================== WHATSAPP DEMO ===================== -->
+<h2 class="heading">Así se ve en tu <span class="accent">WhatsApp</span></h2>
+<div class="wa-section">
+  <div class="wa-header">
+    <div class="wa-avatar">Q7</div>
+    <div class="wa-header-info"><span class="wa-header-name">Alma — Tu Guía</span><span class="wa-header-status">en línea</span></div>
+  </div>
+  <div class="wa-chat">
+    <div class="bubble bubble-in">Buenos días. ¿Cómo dormiste? ¿Lista para tu misión de hoy?<div class="bubble-time">8:02 AM</div></div>
+    <div class="bubble bubble-out">Mal, anoche comí demás 😞<div class="bubble-time">8:15 AM</div></div>
+    <div class="bubble bubble-in">Entiendo. Eso no borra todo lo que construiste esta semana. Hoy solo una cosa: un vaso de agua antes de cada comida. Nada más. ¿Puedes con eso?<div class="bubble-time">8:16 AM</div></div>
+    <div class="bubble bubble-out">Sí, eso sí puedo 💪<div class="bubble-time">8:17 AM</div></div>
+    <div class="bubble bubble-in">Ahí está. Un paso a la vez. Te escribo después del almuerzo para ver cómo te fue. 🙂<div class="bubble-time">8:18 AM</div></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ===================== "ES PARA TI?" ===================== -->
+<h2 class="heading">¿Es para ti?</h2>
+<ul class="for-you">
+  <li><span class="dot"></span>Sabes qué hacer para bajar de peso, pero no logras mantenerlo</li>
+  <li><span class="dot"></span>Comes por ansiedad, estrés o aburrimiento, no por hambre</li>
+  <li><span class="dot"></span>Ya probaste apps, dietas y cursos, y siempre terminaste sola</li>
+  <li><span class="dot"></span>Quieres un cambio real y sostenible, no una solución mágica</li>
+  <li><span class="dot"></span>Descubriste en este test que lo que te falta es compañía</li>
+</ul>
+
+<div class="divider"></div>
+
+<!-- ===================== BEFORE / AFTER ===================== -->
+<div class="before-after">
+  <div class="ba-card ba-before">
+    <div class="ba-label">Donde estás hoy</div>
+    <ul>
+      <li>Empiezas y fallas cada semana</li>
+      <li>Comes por emociones, no por hambre</li>
+      <li>Intentas sola sin apoyo</li>
+      <li>Culpa constante</li>
+      <li>Información sin acción</li>
+      <li>Promesas vacías cada noche</li>
+    </ul>
+  </div>
+  <div class="ba-card ba-after">
+    <div class="ba-label">Con Q7</div>
+    <ul>
+      <li>Un compañero todos los días</li>
+      <li>Alguien que entiende tus emociones</li>
+      <li>Acompañamiento personalizado</li>
+      <li>Compasión en vez de juicio</li>
+      <li>Micromisiones adaptadas a ti</li>
+      <li>Progreso real, paso a paso</li>
+    </ul>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ===================== ANCHORING ===================== -->
+<h2 class="heading">Vamos a hablar de <span class="accent">números</span>.</h2>
+<div class="text">
+  <p>Un nutricionista: $80-200/mes. Te ve 30 minutos cada 15 días. Entre consultas, estás sola.</p>
+  <p>Una app premium: $30-50/mes. Consejos genéricos que están gratis en Google. La abandonas en 5 días.</p>
+  <p>Un personal trainer: $100-300/mes. Te ayuda con ejercicio, pero no con lo que pasa a las 11 de la noche.</p>
+</div>
+
+<div class="callout callout-fresh">
+  Q7 te acompaña <strong>todos los días</strong>. Te conoce por tu nombre. Se adapta a tu momento. Y cuesta <strong>US$9,90 al mes</strong>.
+</div>
+
+<div class="spacer-sm"></div>
+
+<!-- ===================== PRICE CARD ===================== -->
+<div class="price-block">
+  <div class="price-tag">Precio fundador</div>
+  <div class="price-main"><span class="cur">US$</span>9<span class="dec">,90</span></div>
+  <div class="price-period">por mes</div>
+  <div class="price-daily">US$0,33 al día — menos que un café</div>
+
+  <ul class="price-includes">
+    <li>Tu guía personal en WhatsApp, todos los días</li>
+    <li>Micromisiones semanales adaptadas a tu ritmo</li>
+    <li>Acompañamiento emocional personalizado</li>
+    <li>Método de crecimiento continuo en ciclos de 7 días</li>
+    <li>Guía de Emergencia para Momentos de Ansiedad</li>
+    <li>Mapa de Primeras Victorias</li>
+    <li>Todo directo en tu WhatsApp</li>
+  </ul>
+
+  <div class="price-footer">Pago seguro · Cancelas cuando quieras</div>
+</div>
+
+<a href="https://pay.hotmart.com/B102017019G" class="cta cta-hotmart">Continuar</a>
+<p class="cta-sub">7 días de garantía · Sin riesgo · Cancela cuando quieras</p>
+
+<!-- ===================== GUARANTEE ===================== -->
+<div class="guarantee">
+  <span class="guarantee-icon">🛡️</span>
+  <div class="guarantee-text">
+    <h4>Garantía de 7 días</h4>
+    <p>Si no sientes la diferencia, te devolvemos tu dinero. Sin preguntas. No tienes nada que perder. Cancelas cuando quieras.</p>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ===================== HONESTY ===================== -->
+<div class="text">
+  <p>Piensa: ¿cuánto gastas al mes en cosas que <strong>no</strong> te acercan a tu meta?</p>
+  <p>En comida rápida, en antojos de medianoche, en cosas que olvidas al día siguiente.</p>
+  <p>$9,90 para transformar la forma en que cuidas de ti.</p>
+</div>
+
+<div class="divider"></div>
+
+<!-- ===================== CLOSING ===================== -->
+<div class="hero" style="padding-bottom: 16px;">
+  <h1><span class="name" id="heroName2"></span><span id="heroRest2">No es coincidencia que hayas llegado hasta aquí.</span></h1>
+  <p class="sub">Respondiste con sinceridad. Descubriste la raíz. Algo te trajo hasta este momento.</p>
+</div>
+
+<div class="text">
+  <p class="center"><strong>La pregunta es: ¿vas a dar el paso?</strong></p>
+</div>
+
+<a href="https://pay.hotmart.com/B102017019G" class="cta cta-hotmart">Continuar</a>
+<p class="cta-sub">7 días de garantía · Sin riesgo · Cancela cuando quieras</p>
+
+<div class="pull-quote" style="padding-top: 30px;">Tu camino comienza con un clic.</div>
+
+<div class="divider"></div>
+
+<!-- ===================== FAQ ===================== -->
+<div class="faq">
+  <h2 class="heading" style="margin-bottom: 20px;">Preguntas frecuentes</h2>
+
+  <div class="faq-item">
+    <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">¿Q7 es una app que tengo que descargar?<span class="arr">▾</span></div>
+    <div class="faq-a">No. Q7 funciona directo en tu WhatsApp. No descargas nada. No aprendes nada nuevo. Abres WhatsApp y ahí está tu guía.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">¿Es igual para todos?<span class="arr">▾</span></div>
+    <div class="faq-a">No. Q7 usa un método de crecimiento continuo que se adapta a tu vida real. Aprende de tus respuestas, conoce tu ritmo y ajusta cada semana. Tu camino es tuyo.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">¿Puedo cancelar cuando quiera?<span class="arr">▾</span></div>
+    <div class="faq-a">Sí. Con un clic. Sin llamadas, sin emails, sin letra pequeña. Si decides cancelar, se cancela al instante.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">¿Q7 sustituye al nutricionista?<span class="arr">▾</span></div>
+    <div class="faq-a">No. Q7 es un compañero de hábitos, no un profesional de salud. No prescribe dietas ni medicamentos. Te acompaña en el día a día, entre las consultas.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">¿Y si no me gusta?<span class="arr">▾</span></div>
+    <div class="faq-a">Tienes 7 días. Si no sientes la diferencia, cancelas con un clic y no se te cobra más. El riesgo es nuestro.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">¿Cómo una IA puede entenderme?<span class="arr">▾</span></div>
+    <div class="faq-a">Q7 aprende de cada conversación contigo. Cada respuesta que le das, Q7 ajusta la forma de acompañarte. No es lo mismo que hablar con una persona, pero es un compañero disponible todos los días, que no te juzga y se adapta a tu vida real.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">¿Funciona para hombres?<span class="arr">▾</span></div>
+    <div class="faq-a">Sí. Q7 se adapta a cada persona individualmente, sin importar género ni edad.</div>
+  </div>
+</div>
+
+<div class="urgency">
+  ⚠️ Precio fundador para las primeras 200 personas. Después sube a US$14,90/mes.
+</div>
+
+<a href="https://pay.hotmart.com/B102017019G" class="cta cta-hotmart">Continuar</a>
+<p class="cta-sub">7 días de garantía · Sin riesgo · Cancela cuando quieras</p>
+
+<!-- ===================== FOOTER ===================== -->
+<div class="footer">
+  © <span id="year"></span> Botscorp · <a href="https://personalguide.chat">Personal Guide</a>
+</div>
+
+</div><!-- /.page -->
+
+<script>
+  (function () {
+    const params = new URLSearchParams(location.search);
+    const nombre = (params.get('nombre') || '').trim();
+    const bucket = (params.get('bucket') || '').trim().toUpperCase();
+    const DIAG_NAME = { A: 'Síndrome del Inicio Eterno', B: 'Ciclo del Rebote', C: 'Aislamiento Silencioso', D: 'Hambre Emocional' };
+
+    // Nombre en los dos H1 (con fallback elegante si no viene)
+    if (nombre) {
+      document.getElementById('heroName').textContent = nombre + ', ';
+      document.getElementById('heroRest').textContent = 'lo que descubriste cambia todo.';
+      document.getElementById('heroName2').textContent = nombre + ', ';
+      document.getElementById('heroRest2').textContent = 'no es coincidencia que hayas llegado hasta aquí.';
+    }
+
+    // Recall del diagnóstico (?bucket=A/B/C/D)
+    if (DIAG_NAME[bucket]) {
+      document.getElementById('diag-nombre').textContent = DIAG_NAME[bucket];
+      document.getElementById('diag-recall').style.display = 'block';
+    }
+
+    // Pixel: InitiateCheckout al hacer clic en el botón de compra (Hotmart)
+    document.querySelectorAll('.cta-hotmart').forEach(function (a) {
+      a.addEventListener('click', function () { if (window.fbq) fbq('track', 'InitiateCheckout'); });
+    });
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+  })();
+</script>
+
+</body>
+</html>

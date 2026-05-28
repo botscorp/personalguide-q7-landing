@@ -9,7 +9,7 @@
   <meta property="og:description" content="Así será tu acompañamiento los próximos 90 días con Alma." />
   <meta property="og:image" content="https://q7.personalguide.chat/logo-q7.png" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://q7.personalguide.chat/resultado.html" />
+  <meta property="og:url" content="https://q7.personalguide.chat/resultado" />
   <link rel="icon" type="image/png" sizes="32x32" href="/logo-q7.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="/logo-q7.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="/logo-q7.png" />
@@ -46,6 +46,24 @@
     }
     .wrap { max-width: 480px; margin: 0 auto; padding: 24px 18px 40px; }
     .logo { width: 40px; height: 40px; border-radius: 10px; display: block; margin: 0 auto 18px; }
+
+    /* ===== Diagnóstico por bucket ===== */
+    .diag { display: none; text-align: center; margin-bottom: 8px; }
+    .diag-label {
+      display: inline-block; background: #FFF0EC; color: #993C1D;
+      font-size: 11px; font-weight: 600; letter-spacing: 1px;
+      padding: 4px 12px; border-radius: 14px;
+    }
+    .diag h2 {
+      font-size: 23px; font-weight: 700; color: #1B1B1B;
+      line-height: 1.3; margin: 14px 0 14px;
+    }
+    .diag p {
+      font-size: 14.5px; color: #4A4A4A; line-height: 1.7;
+      margin: 0 0 14px; text-align: left;
+    }
+    .diag p:last-child { margin-bottom: 0; }
+    .sep { width: 100%; height: 1px; background: linear-gradient(90deg, transparent, #E0DDD6, transparent); margin: 28px 0; }
 
     /* ===== d1 — cabeçalho + stats ===== */
     .badge {
@@ -113,6 +131,14 @@
 
     <img class="logo" src="/logo-q7.png" alt="Personal Guide Q7" />
 
+    <!-- ===== Diagnóstico por bucket (aparece só com ?bucket=A/B/C/D) ===== -->
+    <div class="diag" id="diag">
+      <span class="diag-label">TU DIAGNÓSTICO PERSONAL</span>
+      <h2 id="diag-titulo"></h2>
+      <div id="diag-texto"></div>
+    </div>
+    <div class="sep" id="diag-sep" style="display:none"></div>
+
     <!-- ===== d1 — cabeçalho + stats ===== -->
     <div style="text-align:center">
       <span class="badge">TU PLAN PERSONALIZADO</span>
@@ -178,20 +204,74 @@
 
     <!-- ===== CTA → página de vendas ===== -->
     <div class="cta-box">
-      <a id="cta" class="cta" href="#">Ver mi plan completo de 12 semanas</a>
+      <a id="cta" class="cta" href="/carta">Ver mi plan completo de 12 semanas</a>
       <p class="cta-sub">Garantía de 7 días · cancelás cuando quieras</p>
     </div>
 
   </div>
 
   <script>
-    // ===== CONFIG — cuando exista la página de ventas, edita esta URL: =====
-    const VENTAS_URL = "#";   // ej: "/carta.html"
+    // ===== CONFIG =====
+    const VENTAS_URL = "/carta";   // página de vendas (clean URL via vercel.json)
+
+    // Textos de diagnóstico por bucket (Tela 12 do funil)
+    const DIAG = {
+      A: {
+        t: "Síndrome del Inicio Eterno",
+        p: [
+          "Empiezas con toda la energía el lunes. Para el miércoles, algo sale mal. Un antojo, un día difícil, una comida fuera de plan. Para el viernes, la voz interna ya ganó: “para qué seguir”. El domingo, pizza y la promesa de “la próxima semana sí”.",
+          "Llevas meses, tal vez años, en ese ciclo. Y cada vez que se repite, la voz que dice “no sirvo para esto” se hace un poco más fuerte.",
+          "Pero fíjate en algo que probablemente nunca te dijeron: cada lunes que volviste a empezar es prueba de que nunca te rendiste. Alguien que se rinde no vuelve a intentar. Tú sí vuelves. Siempre vuelves.",
+          "El problema no eres tú. Nunca fuiste tú. El problema es que entre el lunes y el viernes no había nadie contigo. Y eso está a punto de cambiar."
+        ]
+      },
+      B: {
+        t: "Ciclo del Rebote",
+        p: [
+          "Tú ya demostraste algo que la mayoría no puede: que eres capaz de bajar de peso. Lo hiciste. Con esfuerzo, con disciplina, con sacrificio. Y funcionó.",
+          "Pero después, el peso volvió. Y con él, algo peor que los kilos: la sensación de que todo fue para nada. De que tu cuerpo te traiciona. De que estás condenada a ese vaivén para siempre.",
+          "Ahora escucha esto con atención: el hecho de que hayas bajado de peso prueba que tienes la capacidad. Eso no se pierde. Lo que falló no fue tu cuerpo ni tu voluntad. Fue que después de cruzar la meta, te quedaste sola. Sin nadie que te ayudara a mantener lo que construiste.",
+          "No necesitas bajar de peso otra vez. Necesitas a alguien que esta vez se quede contigo después."
+        ]
+      },
+      C: {
+        t: "Aislamiento Silencioso",
+        p: [
+          "Entre el trabajo, los hijos, la casa y el cansancio, hace tiempo que dejaste de estar en tu propia lista de prioridades. Sabes que necesitas cambiar. Lo sientes en el cuerpo, en la ropa, en el espejo. Pero cuando finalmente juntas energía para intentar algo, no sabes por dónde empezar, no tienes a quién preguntarle, y la vida te vuelve a arrastrar.",
+          "Y hay algo que nadie dice sobre estar sola en esto: no es solo que no tienes ayuda. Es que empiezas a creer que no la mereces. Que “con todo lo que tengo encima, pedir algo para mí es egoísmo”.",
+          "No lo es. Cuidarte no es egoísmo. Es la base de todo lo demás. Y la razón por la que nunca pudiste empezar no es que seas débil. Es que nadie te extendió la mano y te dijo: “yo camino contigo, a tu ritmo, cuando tú puedas”.",
+          "Eso es exactamente lo que vas a encontrar aquí."
+        ]
+      },
+      D: {
+        t: "Hambre Emocional",
+        p: [
+          "Tu relación con la comida va mucho más allá del hambre. Comes cuando estás triste. Comes cuando estás ansiosa. Comes cuando estás aburrida, estresada o simplemente vacía. Y después viene la culpa, que genera más ansiedad, que genera más ganas de comer. Un ciclo que parece no tener salida.",
+          "Pero hay algo que necesitas saber: comer por emociones no es debilidad. Es tu cuerpo buscando consuelo donde puede. Es la única herramienta que encontraste para manejar lo que sientes. Y castigarte por eso solo hace que el ciclo gire más rápido.",
+          "Lo que rompe ese ciclo no es más disciplina. No es otra dieta más estricta. No es fuerza de voluntad. Lo que lo rompe es tener a alguien que te ayude a entender qué sientes ANTES de abrir la nevera. Alguien que no te juzgue. Que te escuche. Que te acompañe a encontrar otras formas de cuidarte.",
+          "Esa compañía existe. Y está más cerca de lo que crees."
+        ]
+      }
+    };
 
     (function () {
       const params = new URLSearchParams(location.search);
 
-      // Nombre personalizado (?nombre=María). Si no viene, el título funciona sin nombre.
+      // ===== Diagnóstico por bucket (?bucket=A/B/C/D) =====
+      const bucket = (params.get('bucket') || '').trim().toUpperCase();
+      if (DIAG[bucket]) {
+        document.getElementById('diag-titulo').textContent = DIAG[bucket].t;
+        const cont = document.getElementById('diag-texto');
+        DIAG[bucket].p.forEach(function (txt) {
+          const el = document.createElement('p');
+          el.textContent = txt;
+          cont.appendChild(el);
+        });
+        document.getElementById('diag').style.display = 'block';
+        document.getElementById('diag-sep').style.display = 'block';
+      }
+
+      // ===== Nombre personalizado (?nombre=María) =====
       const nombre = (params.get('nombre') || '').trim();
       if (nombre) document.getElementById('saludo').textContent = nombre + ', ';
 
@@ -208,11 +288,8 @@
       const t = plus(1); set('qm', t.w + ' ' + t.d);   // primer mensaje = mañana
 
       // ===== CTA hacia la página de ventas =====
-      const cta = document.getElementById('cta');
-      cta.href = VENTAS_URL;
-      cta.addEventListener('click', function () {
-        if (window.fbq) fbq('track', 'InitiateCheckout');
-      });
+      // (sin evento de pixel acá — el evento al ver la carta lo definimos después)
+      document.getElementById('cta').href = VENTAS_URL;
     })();
   </script>
 
