@@ -15,6 +15,23 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/logo-q7.png" />
   <link rel="shortcut icon" href="/logo-q7.png" />
 
+  <!-- ===== Meta Pixel ===== -->
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1154732326039609');
+    fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1154732326039609&ev=PageView&noscript=1" alt="" /></noscript>
+  <!-- ===== End Meta Pixel ===== -->
+
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -73,9 +90,9 @@
         Sin dietas locas. Sin contar calorías. Sin juicio.
       </p>
 
-      <a href="#empezar" class="mt-8 inline-block w-full sm:w-auto px-8 py-4 rounded-full bg-q7green-500 hover:bg-q7green-600 transition text-white font-semibold text-base shadow-lg shadow-q7green-700/25">
+      <button type="button" onclick="openQuiz()" class="mt-8 inline-block w-full sm:w-auto px-8 py-4 rounded-full bg-q7green-500 hover:bg-q7green-600 transition text-white font-semibold text-base shadow-lg shadow-q7green-700/25 cursor-pointer">
         Hacer mi diagnóstico gratis
-      </a>
+      </button>
 
       <p class="mt-3 text-xs text-slate-500">2 minutos · sin tarjeta · resultado personalizado</p>
 
@@ -165,6 +182,20 @@
     </div>
   </section>
 
+  <!-- ===== SECCIÓN DE PRUEBA: embed INLINE (temporal, para comparar con el modal) ===== -->
+  <section class="bg-amber-50 border-y border-amber-200">
+    <div class="max-w-md mx-auto px-6 py-10">
+      <p class="text-xs font-semibold uppercase tracking-wide text-amber-700 mb-1">⚠️ Sección de prueba — embed inline</p>
+      <p class="text-sm text-slate-600 mb-5">Así se ve el quiz incrustado directo en la página (para comparar con el modal de los botones). Esta sección se elimina después del test.</p>
+      <div style="position: relative; height:80dvh; overflow:auto; border-radius:16px;" class="soft-card bg-white">
+        <iframe
+          src="https://quiz.personalguide.chat/s/cmposi6g80009mk01d8h27pcf?embed=true"
+          frameborder="0" style="position:absolute; left:0; top:0; width:100%; height:100%; border:0;">
+        </iframe>
+      </div>
+    </div>
+  </section>
+
   <!-- CTA final -->
   <section id="empezar" class="bg-gradient-to-b from-white to-q7green-50/60">
     <div class="max-w-md mx-auto px-6 py-16 text-center">
@@ -173,9 +204,9 @@
         Tu diagnóstico tarda 2 minutos.<br />Después decidís si querés que Alma te acompañe.
       </p>
 
-      <a href="<URL_QUIZ_INLEAD>" class="inline-block w-full sm:w-auto px-8 py-4 rounded-full bg-q7green-500 hover:bg-q7green-600 transition text-white font-semibold text-base shadow-lg shadow-q7green-700/25">
+      <button type="button" onclick="openQuiz()" class="inline-block w-full sm:w-auto px-8 py-4 rounded-full bg-q7green-500 hover:bg-q7green-600 transition text-white font-semibold text-base shadow-lg shadow-q7green-700/25 cursor-pointer">
         Hacer mi diagnóstico gratis
-      </a>
+      </button>
 
       <p class="mt-4 text-xs text-slate-500">Garantía de 7 días · cancelás cuando quieras</p>
     </div>
@@ -189,7 +220,39 @@
     </div>
   </footer>
 
+  <!-- ===== Modal del quiz (overlay full-screen) ===== -->
+  <div id="quiz-modal" class="hidden fixed inset-0 z-50 bg-black/60 backdrop-blur-sm">
+    <div class="absolute inset-0 sm:inset-y-6 sm:inset-x-0 sm:max-w-lg sm:mx-auto bg-white sm:rounded-2xl shadow-2xl overflow-hidden flex flex-col">
+      <div class="flex justify-end p-2 shrink-0 border-b border-slate-100">
+        <button type="button" onclick="closeQuiz()" aria-label="Cerrar" class="w-9 h-9 rounded-full hover:bg-slate-100 text-slate-500 text-xl leading-none flex items-center justify-center cursor-pointer">✕</button>
+      </div>
+      <iframe id="quiz-frame" src="" frameborder="0" class="flex-1 w-full border-0"></iframe>
+    </div>
+  </div>
+
   <script>
+    // ===== CONFIG — cuando cambie el quiz, solo se edita esta línea =====
+    const QUIZ_URL = "https://quiz.personalguide.chat/s/cmposi6g80009mk01d8h27pcf?embed=true";
+
+    const quizModal = document.getElementById('quiz-modal');
+    const quizFrame = document.getElementById('quiz-frame');
+
+    function openQuiz() {
+      if (!quizFrame.src) quizFrame.src = QUIZ_URL;   // carga el iframe solo al abrir
+      quizModal.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';        // bloquea scroll de fondo
+      if (window.fbq) fbq('track', 'Lead');           // evento Meta: inició el diagnóstico
+    }
+
+    function closeQuiz() {
+      quizModal.classList.add('hidden');
+      document.body.style.overflow = '';
+    }
+
+    // cerrar con tecla Esc o tocando el fondo oscuro
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeQuiz(); });
+    quizModal.addEventListener('click', function (e) { if (e.target === quizModal) closeQuiz(); });
+
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 
