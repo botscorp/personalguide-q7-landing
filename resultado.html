@@ -36,6 +36,9 @@
   <!-- si el JS falla, no mostramos la pantalla de carga (no bloquear el contenido) -->
   <noscript><style>#loading{display:none !important;}</style></noscript>
 
+  <!-- marca que el JS está activo (habilita las animaciones sin riesgo de flicker) -->
+  <script>document.documentElement.classList.add('js');</script>
+
   <style>
     * { box-sizing: border-box; }
     html, body { margin: 0; }
@@ -147,6 +150,33 @@
     .bar-fill { height: 100%; width: 0%; background: linear-gradient(90deg, #4DAD7A, #3A8B5C); border-radius: 999px; transition: width .15s linear; }
     .pct { font-size: 13px; color: #3A8B5C; font-weight: 600; margin: 2px 0 0; }
     #loading.done { opacity: 0; pointer-events: none; }
+
+    /* ===== Secciones narrativas (Q7+Alma / futuro) ===== */
+    .story { margin: 4px 0; text-align: left; }
+    .story .kicker {
+      display: inline-block; font-size: 10.5px; font-weight: 600; letter-spacing: 1px;
+      text-transform: uppercase; color: #3A8B5C; background: #E8F5EE;
+      padding: 4px 12px; border-radius: 14px; margin-bottom: 14px;
+    }
+    .story h2 { font-size: 20px; font-weight: 700; color: #1B1B1B; line-height: 1.35; letter-spacing: -0.2px; margin: 0 0 10px; }
+    .story .lead { font-size: 16.5px; font-weight: 600; color: #3A8B5C; line-height: 1.5; margin: 0 0 16px; }
+    .story p { font-size: 14.5px; color: #4A4A4A; line-height: 1.75; margin: 0 0 13px; }
+    .story p:last-child { margin-bottom: 0; }
+    .story p strong { font-weight: 600; color: #1B1B1B; }
+
+    /* ===== Reveal suave al hacer scroll (solo con JS activo) ===== */
+    .js .story, .js .plano-intro, .js .stats, .js .weeklabel, .js .days, .js .note, .js .cta-box {
+      opacity: 0; transform: translateY(18px);
+      transition: opacity .6s ease, transform .6s cubic-bezier(.22,.61,.36,1);
+    }
+    .js .story.in, .js .plano-intro.in, .js .stats.in, .js .weeklabel.in, .js .days.in, .js .note.in, .js .cta-box.in {
+      opacity: 1; transform: none;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .js .story, .js .plano-intro, .js .stats, .js .weeklabel, .js .days, .js .note, .js .cta-box {
+        opacity: 1 !important; transform: none !important; transition: none !important;
+      }
+    }
   </style>
 </head>
 <body>
@@ -172,8 +202,31 @@
     </div>
     <div class="sep" id="diag-sep" style="display:none"></div>
 
+    <!-- ===== Q7 + Alma (Tela 13) ===== -->
+    <div class="story">
+      <span class="kicker">Tu camino</span>
+      <h2>Existe algo que puede cambiar esto<span id="story-nombre"></span>.</h2>
+      <p class="lead">Se llama Q7. Y tu guía se llama Alma.</p>
+      <p>Alma vive en tu WhatsApp y te acompaña <strong>todos los días</strong>. No es una app de calorías. No es un curso. No es una dieta.</p>
+      <p>Es alguien que <strong>te conoce por tu nombre</strong>. Sabe tu historia. Te escribe todas las mañanas. Cuando avanzas, celebra contigo. Y cuando tropiezas, <strong>no te juzga</strong>: te escucha, entiende qué pasó, y juntas encuentran una forma mejor de seguir adelante.</p>
+      <p>Porque el camino no tiene que ser perfecto. <strong>Solo tiene que ser acompañado.</strong></p>
+    </div>
+
+    <div class="sep"></div>
+
+    <!-- ===== Identidad futura (Tela 15) ===== -->
+    <div class="story">
+      <span class="kicker">En 30 días</span>
+      <h2>Imagina esto dentro de 30 días:</h2>
+      <p>Te despiertas y abres WhatsApp. Alma te saluda por tu nombre. Te recuerda lo que lograste esta semana. Te propone el siguiente paso, adaptado a tu ritmo.</p>
+      <p><strong>Ya no peleas contra tu cuerpo. Lo cuidas.</strong> Ya no necesitas “fuerza de voluntad”. Tienes a alguien.</p>
+      <p>La ropa te queda mejor. Duermes mejor. Tienes más energía. Y lo más importante: <strong>te miras al espejo y te gusta lo que ves.</strong></p>
+    </div>
+
+    <div class="sep"></div>
+
     <!-- ===== d1 — cabeçalho + stats ===== -->
-    <div style="text-align:center">
+    <div class="plano-intro" style="text-align:center">
       <span class="badge">TU PLAN PERSONALIZADO</span>
       <h1 class="title"><span id="saludo"></span>así será tu acompañamiento<br>los próximos 90 días con Alma</h1>
       <p class="sub">Creado el <span id="qh">---</span> · Empieza mañana · Temporada 1</p>
@@ -309,6 +362,8 @@
       if (nombre) {
         nombre = nombre.charAt(0).toUpperCase() + nombre.slice(1);   // capitaliza la inicial
         document.getElementById('saludo').textContent = nombre + ', ';
+        const sn = document.getElementById('story-nombre');
+        if (sn) sn.textContent = ', ' + nombre;   // "Existe algo que puede cambiar esto, María."
       }
 
       // ===== Fechas dinámicas: el plan empieza mañana (D+1 ... D+7) =====
@@ -379,6 +434,17 @@
         }
       }
       requestAnimationFrame(frame);
+    })();
+
+    // ===== Reveal suave al hacer scroll =====
+    (function () {
+      const els = document.querySelectorAll('.story, .plano-intro, .stats, .weeklabel, .days, .note, .cta-box');
+      if (!els.length) return;
+      if (!('IntersectionObserver' in window)) { els.forEach(function (e) { e.classList.add('in'); }); return; }
+      const io = new IntersectionObserver(function (ents) {
+        ents.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
+      }, { threshold: 0.1, rootMargin: '0px 0px -6% 0px' });
+      els.forEach(function (e) { io.observe(e); });
     })();
   </script>
 

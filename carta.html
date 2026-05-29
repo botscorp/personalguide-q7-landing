@@ -32,6 +32,7 @@
 <!-- ===== End Meta Pixel ===== -->
 
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<script>document.documentElement.classList.add('js');</script>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -255,6 +256,42 @@
   .for-you { margin: 20px 0; }
   .for-you li { list-style: none; font-size: 14px; font-weight: 300; color: #444; padding: 8px 0; display: flex; align-items: flex-start; gap: 10px; line-height: 1.55; }
   .for-you li .dot { width: 6px; height: 6px; background: #4DAD7A; border-radius: 50%; flex-shrink: 0; margin-top: 7px; }
+
+  /* ---- Cómo funciona: 3 pasos ---- */
+  .steps { display: flex; flex-direction: column; gap: 16px; margin: 24px 0 8px; }
+  .step { display: flex; align-items: flex-start; gap: 16px; }
+  .step-num {
+    width: 36px; height: 36px; flex-shrink: 0; border-radius: 50%;
+    background: linear-gradient(135deg, #4DAD7A, #3D9B6A); color: #FFF;
+    font-family: 'Lora', serif; font-size: 17px; font-weight: 600;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 3px 10px rgba(77,173,122,0.28);
+  }
+  .step-body { padding-top: 2px; }
+  .step-body h4 { font-size: 15.5px; font-weight: 600; color: #1B1B1B; margin-bottom: 4px; }
+  .step-body p { font-size: 14px; color: #777; font-weight: 300; line-height: 1.65; }
+  .step-body p strong { font-weight: 600; color: #4A4A4A; }
+  .steps-foot { text-align: center; font-size: 13.5px; color: #3A8B5C; font-weight: 500; margin-top: 18px; }
+
+  /* ---- Reveal suave al hacer scroll (solo con JS activo) ---- */
+  .js .heading, .js .text, .js .callout, .js .features, .js .wa-section, .js .before-after,
+  .js .for-you, .js .price-block, .js .guarantee, .js .faq, .js .urgency, .js .pull-quote,
+  .js .cta, .js .steps {
+    opacity: 0; transform: translateY(18px);
+    transition: opacity .6s ease, transform .6s cubic-bezier(.22,.61,.36,1);
+  }
+  .js .heading.in, .js .text.in, .js .callout.in, .js .features.in, .js .wa-section.in, .js .before-after.in,
+  .js .for-you.in, .js .price-block.in, .js .guarantee.in, .js .faq.in, .js .urgency.in, .js .pull-quote.in,
+  .js .cta.in, .js .steps.in {
+    opacity: 1; transform: none;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .js .heading, .js .text, .js .callout, .js .features, .js .wa-section, .js .before-after,
+    .js .for-you, .js .price-block, .js .guarantee, .js .faq, .js .urgency, .js .pull-quote,
+    .js .cta, .js .steps {
+      opacity: 1 !important; transform: none !important; transition: none !important;
+    }
+  }
 </style>
 </head>
 <body>
@@ -337,6 +374,35 @@
     <div class="feature-content"><h4>Sin presión, sin culpa</h4><p>Cuando tropiezas, te escucha, entiende qué pasó y juntos buscan una forma mejor de seguir.</p></div>
   </div>
 </div>
+
+<div class="divider"></div>
+
+<!-- ===================== CÓMO FUNCIONA (3 pasos) ===================== -->
+<h2 class="heading">Así de simple funciona <span class="accent">cada semana</span></h2>
+<div class="steps">
+  <div class="step">
+    <div class="step-num">1</div>
+    <div class="step-body">
+      <h4>Recibes tu misión</h4>
+      <p>Cada semana, Alma te entrega <strong>una sola cosa</strong> para cambiar. Concreta y simple. Nada de planes imposibles.</p>
+    </div>
+  </div>
+  <div class="step">
+    <div class="step-num">2</div>
+    <div class="step-body">
+      <h4>Alma te acompaña los 7 días</h4>
+      <p>Te recuerda, te motiva y te escucha. Si fue una semana difícil, <strong>te acoge</strong>. Si avanzaste, <strong>te desafía</strong>.</p>
+    </div>
+  </div>
+  <div class="step">
+    <div class="step-num">3</div>
+    <div class="step-body">
+      <h4>Avanzas al siguiente ciclo</h4>
+      <p>Un pequeño paso a la vez. Los hábitos se sostienen solos y, sin darte cuenta, tu vida es otra.</p>
+    </div>
+  </div>
+</div>
+<p class="steps-foot">Son <strong>3-5 minutos por día</strong>. Todo en tu WhatsApp.</p>
 
 <div class="divider"></div>
 
@@ -548,6 +614,18 @@
     });
 
     document.getElementById('year').textContent = new Date().getFullYear();
+  })();
+
+  // ===== Reveal suave al hacer scroll =====
+  (function () {
+    const sel = '.heading, .text, .callout, .features, .wa-section, .before-after, .for-you, .price-block, .guarantee, .faq, .urgency, .pull-quote, .cta, .steps';
+    const els = document.querySelectorAll(sel);
+    if (!els.length) return;
+    if (!('IntersectionObserver' in window)) { els.forEach(function (e) { e.classList.add('in'); }); return; }
+    const io = new IntersectionObserver(function (ents) {
+      ents.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
+    }, { threshold: 0.08, rootMargin: '0px 0px -5% 0px' });
+    els.forEach(function (e) { io.observe(e); });
   })();
 </script>
 
