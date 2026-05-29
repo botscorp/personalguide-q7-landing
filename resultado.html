@@ -36,6 +36,8 @@
   <!-- si el JS falla, no mostramos la pantalla de carga (no bloquear el contenido) -->
   <noscript><style>#loading{display:none !important;}</style></noscript>
 
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+
   <!-- marca que el JS está activo (habilita las animaciones sin riesgo de flicker) -->
   <script>document.documentElement.classList.add('js');</script>
 
@@ -43,42 +45,43 @@
     * { box-sizing: border-box; }
     html, body { margin: 0; }
     body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      color: #1B1B1B;
-      background:
-        radial-gradient(ellipse 70% 40% at 50% 0%, rgba(244,114,94,0.12), transparent),
-        radial-gradient(ellipse 90% 50% at 50% 100%, rgba(77,173,122,0.10), transparent),
-        #fbfaf6;
+      font-family: 'Outfit', sans-serif;
+      color: #333;
+      background: #FFFFFF;
+      font-size: 16px;
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
       min-height: 100dvh;
     }
-    .wrap { max-width: 480px; margin: 0 auto; padding: 24px 18px 40px; }
-    .logo { width: 40px; height: 40px; border-radius: 10px; display: block; margin: 0 auto 18px; }
+    .wrap { max-width: 460px; margin: 0 auto; padding: 24px 22px 40px; }
+    .logo { width: 48px; height: 48px; border-radius: 12px; display: block; margin: 0 auto 20px; }
 
     /* ===== Diagnóstico por bucket ===== */
     .diag { display: none; text-align: center; margin-bottom: 8px; }
     .diag-label {
-      display: inline-block; background: #FFF0EC; color: #993C1D;
-      font-size: 11px; font-weight: 600; letter-spacing: 1px;
-      padding: 4px 12px; border-radius: 14px;
+      display: inline-block; background: linear-gradient(135deg, #FFF0EC, #FCDFD6); color: #B0492A;
+      font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase;
+      padding: 6px 16px; border-radius: 20px;
     }
     .diag h2 {
-      font-size: 23px; font-weight: 700; color: #1B1B1B;
-      line-height: 1.3; margin: 14px 0 14px;
+      font-family: 'Lora', serif;
+      font-size: 22px; font-weight: 600; color: #1B1B1B;
+      line-height: 1.35; margin: 16px 0 14px;
     }
     .diag p {
-      font-size: 14.5px; color: #4A4A4A; line-height: 1.7;
-      margin: 0 0 14px; text-align: left;
+      font-size: 15px; color: #444; font-weight: 300; line-height: 1.8;
+      margin: 0 0 16px; text-align: left;
     }
     .diag p:last-child { margin-bottom: 0; }
-    .sep { width: 100%; height: 1px; background: linear-gradient(90deg, transparent, #E0DDD6, transparent); margin: 28px 0; }
+    .sep { width: 100%; height: 1px; background: linear-gradient(90deg, transparent, #E5E5E5, transparent); margin: 36px 0; }
 
     /* ===== d1 — cabeçalho + stats ===== */
     .badge {
-      display: inline-block; background: #E8F5EE; color: #3A8B5C;
-      font-size: 11px; font-weight: 600; letter-spacing: 1px;
-      padding: 4px 12px; border-radius: 14px;
+      display: inline-block; background: linear-gradient(135deg, #E8F5EE, #D4EFDF); color: #3A8B5C;
+      font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase;
+      padding: 6px 16px; border-radius: 20px;
     }
-    .title { font-size: 21px; font-weight: 600; color: #1B1B1B; line-height: 1.35; margin: 14px 0 6px; }
+    .title { font-family: 'Lora', serif; font-size: 22px; font-weight: 600; color: #1B1B1B; line-height: 1.35; margin: 16px 0 6px; }
     .sub { font-size: 12px; color: #999; margin: 0; }
     .stats { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin: 18px 0 6px; text-align: center; }
     .stat { background: #F7FBF9; border: 1px solid #E0EFE6; border-radius: 10px; padding: 12px; }
@@ -124,27 +127,25 @@
     /* ===== CTA ===== */
     .cta-box { margin-top: 24px; text-align: center; }
     .cta {
-      display: inline-block; width: 100%; padding: 16px 28px; border: 0;
-      border-radius: 999px; background: #4DAD7A; color: #fff;
-      font-size: 16px; font-weight: 600; cursor: pointer; text-decoration: none;
-      box-shadow: 0 10px 24px -8px rgba(49,111,79,0.45);
+      display: block; width: 100%; padding: 18px; border: 0;
+      border-radius: 14px; background: linear-gradient(135deg, #4DAD7A, #3D9B6A); color: #fff;
+      font-family: 'Outfit', sans-serif; font-size: 16px; font-weight: 600;
+      text-align: center; cursor: pointer; text-decoration: none;
+      box-shadow: 0 4px 16px rgba(77,173,122,0.25); transition: all 0.2s;
     }
-    .cta:hover { background: #3e9266; }
-    .cta-sub { font-size: 11px; color: #888; margin: 12px 0 0; }
+    .cta:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(77,173,122,0.35); }
+    .cta-sub { font-size: 11.5px; color: #BBB; margin: 12px 0 0; }
 
     /* ===== Pantalla de carga / análisis (overlay) ===== */
     #loading {
       position: fixed; inset: 0; z-index: 9999;
       display: flex; flex-direction: column; align-items: center; justify-content: center;
       gap: 14px; padding: 28px; text-align: center;
-      background:
-        radial-gradient(ellipse 70% 40% at 50% 0%, rgba(244,114,94,0.12), transparent),
-        radial-gradient(ellipse 90% 50% at 50% 100%, rgba(77,173,122,0.10), transparent),
-        #fbfaf6;
+      background: #FFFFFF;
       transition: opacity .5s ease;
     }
-    #loading .load-logo { width: 50px; height: 50px; border-radius: 13px; margin: 0 0 6px; }
-    #load-title { font-size: 20px; font-weight: 700; color: #1B1B1B; line-height: 1.3; margin: 0; max-width: 340px; }
+    #loading .load-logo { width: 48px; height: 48px; border-radius: 12px; margin: 0 0 6px; }
+    #load-title { font-family: 'Lora', serif; font-size: 21px; font-weight: 600; color: #1B1B1B; line-height: 1.35; margin: 0; max-width: 340px; }
     #load-step { font-size: 14px; color: #4A4A4A; line-height: 1.5; margin: 0; min-height: 22px; max-width: 320px; transition: opacity .25s ease; }
     .bar { width: 100%; max-width: 300px; height: 10px; background: #EAE7E0; border-radius: 999px; overflow: hidden; margin-top: 8px; }
     .bar-fill { height: 100%; width: 0%; background: linear-gradient(90deg, #4DAD7A, #3A8B5C); border-radius: 999px; transition: width .15s linear; }
@@ -158,9 +159,9 @@
       text-transform: uppercase; color: #3A8B5C; background: #E8F5EE;
       padding: 4px 12px; border-radius: 14px; margin-bottom: 14px;
     }
-    .story h2 { font-size: 20px; font-weight: 700; color: #1B1B1B; line-height: 1.35; letter-spacing: -0.2px; margin: 0 0 10px; }
-    .story .lead { font-size: 16.5px; font-weight: 600; color: #3A8B5C; line-height: 1.5; margin: 0 0 16px; }
-    .story p { font-size: 14.5px; color: #4A4A4A; line-height: 1.75; margin: 0 0 13px; }
+    .story h2 { font-family: 'Lora', serif; font-size: 21px; font-weight: 600; color: #1B1B1B; line-height: 1.35; margin: 0 0 12px; }
+    .story .lead { font-family: 'Lora', serif; font-size: 18px; font-weight: 400; color: #3A8B5C; line-height: 1.5; margin: 0 0 16px; }
+    .story p { font-size: 15px; color: #444; font-weight: 300; line-height: 1.8; margin: 0 0 14px; }
     .story p:last-child { margin-bottom: 0; }
     .story p strong { font-weight: 600; color: #1B1B1B; }
 
