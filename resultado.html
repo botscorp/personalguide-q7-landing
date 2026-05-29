@@ -272,8 +272,11 @@
       }
 
       // ===== Nombre personalizado (?nombre=María) =====
-      const nombre = (params.get('nombre') || '').trim();
-      if (nombre) document.getElementById('saludo').textContent = nombre + ', ';
+      let nombre = (params.get('nombre') || '').trim();
+      if (nombre) {
+        nombre = nombre.charAt(0).toUpperCase() + nombre.slice(1);   // capitaliza la inicial
+        document.getElementById('saludo').textContent = nombre + ', ';
+      }
 
       // ===== Fechas dinámicas: el plan empieza mañana (D+1 ... D+7) =====
       const d = new Date();

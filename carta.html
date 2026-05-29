@@ -522,7 +522,8 @@
 <script>
   (function () {
     const params = new URLSearchParams(location.search);
-    const nombre = (params.get('nombre') || '').trim();
+    let nombre = (params.get('nombre') || '').trim();
+    if (nombre) nombre = nombre.charAt(0).toUpperCase() + nombre.slice(1);   // capitaliza la inicial
     const bucket = (params.get('bucket') || '').trim().toUpperCase();
     const DIAG_NAME = { A: 'Síndrome del Inicio Eterno', B: 'Ciclo del Rebote', C: 'Aislamiento Silencioso', D: 'Hambre Emocional' };
 
