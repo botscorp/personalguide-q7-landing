@@ -473,7 +473,7 @@
 </div>
 
 <div class="callout callout-fresh">
-  Q7 te acompaña <strong>todos los días</strong>. Te conoce por tu nombre. Se adapta a tu momento. Y cuesta <strong>US$9,90 al mes</strong>.
+  Q7 te acompaña <strong>todos los días</strong>. Te conoce por tu nombre. Se adapta a tu momento. Y cuesta <strong>US$6,90 al mes</strong>.
 </div>
 
 <div class="spacer-sm"></div>
@@ -481,9 +481,9 @@
 <!-- ===================== PRICE CARD ===================== -->
 <div class="price-block">
   <div class="price-tag">Precio fundador</div>
-  <div class="price-main"><span class="cur">US$</span>9<span class="dec">,90</span></div>
+  <div class="price-main"><span class="cur">US$</span>6<span class="dec">,90</span></div>
   <div class="price-period">por mes</div>
-  <div class="price-daily">US$0,33 al día — menos que un café</div>
+  <div class="price-daily">US$0,23 al día — menos que un café</div>
 
   <ul class="price-includes">
     <li>Tu guía personal en WhatsApp, todos los días</li>
@@ -498,7 +498,7 @@
   <div class="price-footer">Pago seguro · Cancelas cuando quieras</div>
 </div>
 
-<a href="https://pay.hotmart.com/B102017019G" class="cta cta-hotmart">Continuar</a>
+<a href="#" class="cta cta-hotmart" data-waitlist>Continuar</a>
 <p class="cta-sub">7 días de garantía · Sin riesgo · Cancela cuando quieras</p>
 
 <!-- ===================== GUARANTEE ===================== -->
@@ -516,7 +516,7 @@
 <div class="text">
   <p>Piensa: ¿cuánto gastas al mes en cosas que <strong>no</strong> te acercan a tu meta?</p>
   <p>En comida rápida, en antojos de medianoche, en cosas que olvidas al día siguiente.</p>
-  <p>$9,90 para transformar la forma en que cuidas de ti.</p>
+  <p>$6,90 para transformar la forma en que cuidas de ti.</p>
 </div>
 
 <div class="divider"></div>
@@ -531,7 +531,7 @@
   <p class="center"><strong>La pregunta es: ¿vas a dar el paso?</strong></p>
 </div>
 
-<a href="https://pay.hotmart.com/B102017019G" class="cta cta-hotmart">Continuar</a>
+<a href="#" class="cta cta-hotmart" data-waitlist>Continuar</a>
 <p class="cta-sub">7 días de garantía · Sin riesgo · Cancela cuando quieras</p>
 
 <div class="pull-quote" style="padding-top: 30px;">Tu camino comienza con un clic.</div>
@@ -573,10 +573,10 @@
 </div>
 
 <div class="urgency">
-  ⚠️ Precio fundador para las primeras 200 personas. Después sube a US$14,90/mes.
+  ⚠️ Estás entre las primeras personas en tener a Alma. Por ahora, pocos cupos.
 </div>
 
-<a href="https://pay.hotmart.com/B102017019G" class="cta cta-hotmart">Continuar</a>
+<a href="#" class="cta cta-hotmart" data-waitlist>Continuar</a>
 <p class="cta-sub">7 días de garantía · Sin riesgo · Cancela cuando quieras</p>
 
 <!-- ===================== FOOTER ===================== -->
@@ -626,6 +626,50 @@
       ents.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
     }, { threshold: 0.08, rootMargin: '0px 0px -5% 0px' });
     els.forEach(function (e) { io.observe(e); });
+  })();
+</script>
+
+<!-- ===================== WAITLIST MODAL (Formbricks) ===================== -->
+<div id="waitlist-overlay" class="wl-overlay" aria-hidden="true">
+  <div class="wl-modal" role="dialog" aria-modal="true" aria-label="Lista de espera">
+    <button class="wl-close" id="wl-close" aria-label="Cerrar">&times;</button>
+    <iframe id="wl-iframe" class="wl-iframe" data-src="https://quiz.personalguide.chat/s/cmqhbqzzs0027mk01rq4ozoz0" frameborder="0" title="Lista de espera"></iframe>
+  </div>
+</div>
+
+<style>
+  .wl-overlay{position:fixed;inset:0;background:rgba(20,15,10,.66);backdrop-filter:blur(2px);
+    display:none;align-items:center;justify-content:center;z-index:9999;padding:16px;}
+  .wl-overlay.open{display:flex;}
+  .wl-modal{position:relative;width:92vw;max-width:440px;height:80vh;height:80dvh;max-height:680px;
+    background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.35);}
+  .wl-iframe{position:absolute;inset:0;width:100%;height:100%;border:0;}
+  .wl-close{position:absolute;top:8px;right:10px;z-index:2;width:34px;height:34px;border:0;
+    border-radius:50%;background:rgba(0,0,0,.45);color:#fff;font-size:22px;line-height:34px;
+    cursor:pointer;padding:0;}
+  .wl-close:hover{background:rgba(0,0,0,.65);}
+</style>
+
+<script>
+  (function(){
+    var overlay=document.getElementById('waitlist-overlay');
+    var iframe=document.getElementById('wl-iframe');
+    var closeBtn=document.getElementById('wl-close');
+    function open(){
+      if(iframe.getAttribute('src')!==iframe.dataset.src){ iframe.src=iframe.dataset.src; }
+      overlay.classList.add('open'); overlay.setAttribute('aria-hidden','false');
+      document.body.style.overflow='hidden';
+    }
+    function close(){
+      overlay.classList.remove('open'); overlay.setAttribute('aria-hidden','true');
+      document.body.style.overflow='';
+    }
+    document.querySelectorAll('[data-waitlist]').forEach(function(a){
+      a.addEventListener('click',function(e){ e.preventDefault(); open(); });
+    });
+    closeBtn.addEventListener('click',close);
+    overlay.addEventListener('click',function(e){ if(e.target===overlay){ close(); } });
+    document.addEventListener('keydown',function(e){ if(e.key==='Escape'){ close(); } });
   })();
 </script>
 
