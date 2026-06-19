@@ -610,9 +610,9 @@
       document.getElementById('diag-recall').style.display = 'block';
     }
 
-    // Pixel: InitiateCheckout al hacer clic en el botón de compra (Hotmart)
+    // Pixel: Lead al hacer clic en "Quiero a Alma conmigo" (abre la lista de espera) — evento de optimización de la campaña de Leads
     document.querySelectorAll('.cta-hotmart').forEach(function (a) {
-      a.addEventListener('click', function () { if (window.fbq) fbq('track', 'InitiateCheckout'); });
+      a.addEventListener('click', function () { if (window.fbq) fbq('track', 'Lead'); });
     });
 
     document.getElementById('year').textContent = new Date().getFullYear();
